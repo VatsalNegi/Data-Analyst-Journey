@@ -1,0 +1,240 @@
+"""
+Day 3: NumPy Fundamentals for Data Analysis
+Author: Vatsal Negi
+
+Topics Covered:
+- NumPy introduction
+- Arrays (1D, 2D, 3D)
+- Array properties
+- Indexing & slicing
+- Data types
+- Mathematical operations
+- Broadcasting
+- Aggregation functions
+- Reshaping arrays
+- Random module
+- Practical data analysis examples
+"""
+
+import numpy as np
+
+print("===== DAY 3: NUMPY FUNDAMENTALS =====\n")
+
+# ======================================================
+# 1. INTRODUCTION TO NUMPY
+# ======================================================
+
+print("NumPy version:", np.__version__)
+print("NumPy is used for fast numerical computations.\n")
+
+# ======================================================
+# 2. CREATING NUMPY ARRAYS
+# ======================================================
+
+# 1D Array
+arr_1d = np.array([10, 20, 30, 40, 50])
+print("1D Array:", arr_1d)
+
+# 2D Array
+arr_2d = np.array([
+    [1, 2, 3],
+    [4, 5, 6]
+])
+print("\n2D Array:\n", arr_2d)
+
+# 3D Array
+arr_3d = np.array([
+    [[1, 2], [3, 4]],
+    [[5, 6], [7, 8]]
+])
+print("\n3D Array:\n", arr_3d)
+
+# ======================================================
+# 3. ARRAY PROPERTIES
+# ======================================================
+
+print("\n--- ARRAY PROPERTIES ---")
+print("Shape:", arr_2d.shape)
+print("Dimensions:", arr_2d.ndim)
+print("Size:", arr_2d.size)
+print("Data Type:", arr_2d.dtype)
+
+# ======================================================
+# 4. SPECIAL ARRAYS
+# ======================================================
+
+zeros = np.zeros((2, 3))
+ones = np.ones((3, 3))
+identity = np.eye(3)
+
+print("\nZeros Array:\n", zeros)
+print("\nOnes Array:\n", ones)
+print("\nIdentity Matrix:\n", identity)
+
+# ======================================================
+# 5. RANGE & SEQUENCE ARRAYS
+# ======================================================
+
+range_arr = np.arange(1, 11, 2)
+linspace_arr = np.linspace(0, 1, 5)
+
+print("\nArange:", range_arr)
+print("Linspace:", linspace_arr)
+
+# ======================================================
+# 6. INDEXING & SLICING
+# ======================================================
+
+print("\n--- INDEXING & SLICING ---")
+arr = np.array([5, 10, 15, 20, 25, 30])
+
+print("Original Array:", arr)
+print("First element:", arr[0])
+print("Last element:", arr[-1])
+print("Slice (1:4):", arr[1:4])
+print("Every second element:", arr[::2])
+
+# 2D indexing
+print("\n2D Indexing Example:")
+print("Element (1,2):", arr_2d[1, 2])
+print("First row:", arr_2d[0])
+print("Second column:", arr_2d[:, 1])
+
+# ======================================================
+# 7. DATA TYPES & TYPE CONVERSION
+# ======================================================
+
+float_arr = np.array([1.2, 2.5, 3.7])
+int_arr = float_arr.astype(int)
+
+print("\nFloat Array:", float_arr)
+print("Converted to Int:", int_arr)
+
+# ======================================================
+# 8. BASIC MATHEMATICAL OPERATIONS
+# ======================================================
+
+a = np.array([10, 20, 30])
+b = np.array([1, 2, 3])
+
+print("\nAddition:", a + b)
+print("Subtraction:", a - b)
+print("Multiplication:", a * b)
+print("Division:", a / b)
+print("Power:", a ** 2)
+
+# ======================================================
+# 9. UNIVERSAL FUNCTIONS (ufunc)
+# ======================================================
+
+print("\n--- UNIVERSAL FUNCTIONS ---")
+print("Square Root:", np.sqrt(a))
+print("Exponential:", np.exp(a))
+print("Log:", np.log(a))
+print("Maximum:", np.max(a))
+print("Minimum:", np.min(a))
+
+# ======================================================
+# 10. BROADCASTING
+# ======================================================
+
+print("\n--- BROADCASTING ---")
+matrix = np.array([[1, 2, 3], [4, 5, 6]])
+scalar = 10
+
+print("Matrix:\n", matrix)
+print("Matrix + Scalar:\n", matrix + scalar)
+
+# ======================================================
+# 11. AGGREGATION FUNCTIONS
+# ======================================================
+
+data = np.array([10, 20, 30, 40, 50])
+
+print("\nSum:", np.sum(data))
+print("Mean:", np.mean(data))
+print("Median:", np.median(data))
+print("Standard Deviation:", np.std(data))
+print("Variance:", np.var(data))
+
+# Axis-based operations
+print("\n2D Sum by axis:")
+print("Column-wise:", np.sum(arr_2d, axis=0))
+print("Row-wise:", np.sum(arr_2d, axis=1))
+
+# ======================================================
+# 12. RESHAPING & FLATTENING
+# ======================================================
+
+reshaped = np.reshape(arr, (2, 3))
+flattened = reshaped.flatten()
+
+print("\nReshaped Array:\n", reshaped)
+print("Flattened Array:", flattened)
+
+# ======================================================
+# 13. STACKING & SPLITTING
+# ======================================================
+
+x = np.array([1, 2, 3])
+y = np.array([4, 5, 6])
+
+print("\nVertical Stack:\n", np.vstack((x, y)))
+print("Horizontal Stack:\n", np.hstack((x, y)))
+
+split_arr = np.array([10, 20, 30, 40, 50, 60])
+print("\nSplit Array:", np.split(split_arr, 3))
+
+# ======================================================
+# 14. RANDOM MODULE
+# ======================================================
+
+print("\n--- RANDOM DATA ---")
+random_ints = np.random.randint(1, 100, 10)
+random_floats = np.random.rand(5)
+
+print("Random Integers:", random_ints)
+print("Random Floats:", random_floats)
+
+# Reproducibility
+np.random.seed(42)
+print("Seeded Random:", np.random.randint(1, 100, 5))
+
+# ======================================================
+# 15. BOOLEAN MASKING & FILTERING
+# ======================================================
+
+scores = np.array([45, 67, 89, 34, 72, 90])
+passed = scores[scores >= 60]
+
+print("\nScores:", scores)
+print("Passed Students:", passed)
+
+# ======================================================
+# 16. REAL-WORLD DATA ANALYSIS EXAMPLE
+# ======================================================
+
+sales = np.array([12000, 15000, 17000, 16000, 18000, 20000])
+
+print("\n--- SALES ANALYSIS ---")
+print("Total Sales:", np.sum(sales))
+print("Average Sales:", np.mean(sales))
+print("Highest Sale:", np.max(sales))
+print("Lowest Sale:", np.min(sales))
+
+growth = sales - sales[0]
+print("Sales Growth:", growth)
+
+# ======================================================
+# 17. WHY NUMPY IS IMPORTANT FOR DATA ANALYSTS
+# ======================================================
+
+"""
+NumPy is used for:
+- Fast numerical operations
+- Handling large datasets
+- Mathematical computations
+- Base for Pandas, ML, and DL libraries
+"""
+
+print("\n===== DAY 3 NUMPY COMPLETED SUCCESSFULLY 🚀 =====")
