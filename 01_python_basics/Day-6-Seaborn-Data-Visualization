@@ -1,0 +1,61 @@
+# 📊 Day 6 – Seaborn Data Visualization (Data Analyst Journey)
+
+This repository covers **Seaborn**, a Python library used for **statistical data visualization**.
+Seaborn is built on top of Matplotlib and works seamlessly with Pandas DataFrames.
+
+---
+
+## 🔹 Topics Covered
+
+### ✅ Beginner Level
+- Introduction to Seaborn
+- Difference between Seaborn and Matplotlib
+- Line plots
+- Scatter plots
+- Histograms
+- Built-in datasets
+- Themes and styles
+- Hue parameter
+
+### ✅ Intermediate Level
+- Box plots
+- Violin plots
+- Bar plots
+- Count plots
+- Pair plots
+- Heatmaps
+- Correlation visualization
+- Color palettes
+- Categorical vs Numerical plots
+
+### ✅ Advanced Level
+- FacetGrid
+- Regression plots (lmplot, regplot)
+- KDE plots
+- Combining Seaborn with Matplotlib
+- Plot annotations
+- Handling large datasets
+- Publication-quality plots
+
+---
+
+## 📁 Files Description
+
+| File Name | Description |
+|----------|------------|
+| seaborn_basics.py | Beginner-level Seaborn plots |
+| seaborn_categorical_plots.py | Box, violin, bar, count plots |
+| seaborn_statistical_plots.py | Pairplot, heatmap, correlation |
+| seaborn_advanced_plots.py | FacetGrid, lmplot, KDE, annotations |
+
+---
+
+## 🧠 Key Learning Outcome
+- Perform Exploratory Data Analysis (EDA)
+- Visualize relationships and distributions
+- Create professional, presentation-ready plots
+- Improve storytelling with data
+
+---
+
+📌 **Prepared for Data Analyst Fresher Interviews**
