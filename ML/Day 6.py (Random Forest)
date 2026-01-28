@@ -1,0 +1,215 @@
+"""
+===========================================================
+DAY 6 – RANDOM FOREST (FULL THEORY + PRACTICAL)
+===========================================================
+
+This file covers:
+1. What is Random Forest?
+2. Why Random Forest is needed?
+3. Bagging (Bootstrap Aggregation)
+4. How Random Forest Works
+5. Random Forest for Classification
+6. Random Forest for Regression
+7. Feature Importance
+8. Advantages & Disadvantages
+9. Interview Questions & Answers
+
+===========================================================
+"""
+
+# =========================================================
+# 1. WHAT IS RANDOM FOREST?
+# =========================================================
+"""
+Random Forest is an ENSEMBLE learning algorithm.
+
+It is a collection (forest) of multiple Decision Trees.
+
+Final prediction is:
+- Classification → Majority Voting
+- Regression → Average of predictions
+"""
+
+# =========================================================
+# 2. WHY RANDOM FOREST IS NEEDED?
+# =========================================================
+"""
+Problems with Decision Tree:
+1. Overfitting
+2. High variance
+3. Unstable
+
+Solution:
+➡ Combine many trees → Random Forest
+"""
+
+# =========================================================
+# 3. BAGGING (BOOTSTRAP AGGREGATION)
+# =========================================================
+"""
+Bagging means:
+1. Create multiple random samples from dataset
+2. Train one tree on each sample
+3. Combine results
+
+Each tree sees:
+- Different data
+- Different features
+"""
+
+# =========================================================
+# 4. HOW RANDOM FOREST WORKS
+# =========================================================
+"""
+1. Select random samples from dataset
+2. Build decision tree for each sample
+3. Select random subset of features at each split
+4. Make prediction from each tree
+5. Combine predictions
+"""
+
+# =========================================================
+# 5. RANDOM FOREST – CLASSIFICATION
+# =========================================================
+
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+# Load dataset
+data = load_iris()
+X = data.data
+y = data.target
+
+# Train-test split
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# Create model
+rf_clf = RandomForestClassifier(
+    n_estimators=100,
+    criterion="gini",
+    max_depth=5,
+    random_state=42
+)
+
+# Train model
+rf_clf.fit(X_train, y_train)
+
+# Prediction
+y_pred = rf_clf.predict(X_test)
+
+# Accuracy
+print("Random Forest Classification Accuracy:",
+      accuracy_score(y_test, y_pred))
+
+# =========================================================
+# 6. RANDOM FOREST – REGRESSION
+# =========================================================
+
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.datasets import fetch_california_housing
+from sklearn.metrics import mean_squared_error
+
+# Load regression dataset
+housing = fetch_california_housing()
+X_reg = housing.data
+y_reg = housing.target
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X_reg, y_reg, test_size=0.2, random_state=42
+)
+
+# Create regressor
+rf_reg = RandomForestRegressor(
+    n_estimators=100,
+    max_depth=10,
+    random_state=42
+)
+
+# Train
+rf_reg.fit(X_train, y_train)
+
+# Predict
+y_pred_reg = rf_reg.predict(X_test)
+
+# Evaluation
+print("Random Forest Regression MSE:",
+      mean_squared_error(y_test, y_pred_reg))
+
+# =========================================================
+# 7. FEATURE IMPORTANCE
+# =========================================================
+"""
+Random Forest can tell which features are important.
+"""
+
+import pandas as pd
+
+feature_importance = rf_clf.feature_importances_
+feature_names = data.feature_names
+
+importance_df = pd.DataFrame({
+    "Feature": feature_names,
+    "Importance": feature_importance
+}).sort_values(by="Importance", ascending=False)
+
+print("\nFeature Importance:")
+print(importance_df)
+
+# =========================================================
+# 8. ADVANTAGES & DISADVANTAGES
+# =========================================================
+"""
+Advantages:
+1. Reduces overfitting
+2. High accuracy
+3. Works with non-linear data
+4. Handles missing values well
+
+Disadvantages:
+1. Slower than Decision Tree
+2. Less interpretable
+3. Large memory usage
+"""
+
+# =========================================================
+# 9. INTERVIEW QUESTIONS & ANSWERS
+# =========================================================
+"""
+Q1. What is Random Forest?
+Ans: An ensemble of multiple decision trees.
+
+Q2. Why Random Forest performs better than Decision Tree?
+Ans: It reduces overfitting using bagging.
+
+Q3. What is bagging?
+Ans: Training models on random samples and combining results.
+
+Q4. How does Random Forest handle feature selection?
+Ans: Random subset of features at each split.
+
+Q5. Voting vs Averaging?
+Ans:
+- Voting → Classification
+- Averaging → Regression
+
+Q6. Does Random Forest need feature scaling?
+Ans: No.
+
+Q7. Can Random Forest handle categorical data?
+Ans: Yes (after encoding).
+
+Q8. What happens if trees are highly correlated?
+Ans: Performance decreases.
+
+Q9. What is n_estimators?
+Ans: Number of trees in forest.
+
+Q10. Is Random Forest prone to overfitting?
+Ans: Less than Decision Tree.
+"""
+
+print("\nDAY 6 RANDOM FOREST COMPLETED ✅")
